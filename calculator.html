@@ -1,0 +1,153 @@
+<html>
+    <head>
+        <title>Simple Calculator</title>
+        <style>
+            table{
+                width: 25%;
+                border-collapse: collapse;
+            }
+            table, tr, td{
+                border: 1px solid burlywood;
+            }
+            th, td{
+                padding: 10px;
+                text-align: center;
+            }
+            button{
+                background-color: rgb(255, 117, 117);
+                font-size: 160%;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                $(button1).click(function(){
+                    alert("HI")
+                    })
+             })
+            let currentInput = '';
+            let operator = '';
+            let firstOperand = null;
+            let buttons = document.getElementsByTagName('button')
+                for(let i = 0; i< buttons.length;i++   ){
+                    buttons[i].addEventListener('click',function(){
+                        alert(`Button ${this.innerText} Clicked`)
+                        var operation= this.innerText;
+                        switch(operation){
+                            case "+":{
+                                result = num1 + num2;			
+                                break;
+                            }
+                            case "-":{
+                                if(num1>num2){
+                                    result = num1 - num2;
+                                }
+                                else{
+                                    result = num2 - num1;
+                                }
+                                break;
+                            }
+                            case "*":{
+                                result = num1 * num2;
+                                break;
+                            }
+                            case "/":{
+                                result = num1 / num2;
+                                break;
+                            }
+                        }
+                    }
+                    )    
+                }
+            function updateDisplay() {
+                document.getElementById('result').value = currentInput;
+            }
+            function clearDisplay() {
+                currentInput = '';
+                operator = '';
+                firstOperand = null;
+                updateDisplay();
+            }
+            
+            function appendNumber(number) {
+                currentInput += number;
+                updateDisplay();
+            }
+            function appendOperator(op) {
+                if (currentInput === '') return;
+                if(currentInput.split(' ')[2] == ''){
+                    currentInput = firstOperand + ` ${op} `;
+                    operator = op
+                    updateDisplay();
+                    return
+                }
+                if (firstOperand === null) {
+                    firstOperand = parseFloat(currentInput);
+                } else {
+                    calculateResult();
+                }
+                operator = op;
+                if(currentInput != null){
+                    firstOperand = parseFloat(currentInput);
+                }
+                currentInput += ` ${operator} `;
+                updateDisplay();
+            }
+            function calculateResult() {
+                if (currentInput === '' || operator === '') return;
+                let secondOperand = parseFloat(currentInput.split(' ').pop());
+                let result;
+                switch (operator) {
+                    case '+':
+                        result = firstOperand + secondOperand;
+                        break;
+                    case '-':
+                        result = firstOperand - secondOperand;
+                        break;
+                    default:
+                        return;
+                }
+                currentInput = result.toString();
+                operator = '';
+                firstOperand = null;
+                updateDisplay();
+            }
+        </script>
+    </head>
+    <body>
+        <h3>Calculating...</h3>
+        <div class="calculator">  
+            <table border="1">
+                <tr><td colspan="4"><input type="text" id="result"></td></tr>
+                <tr>
+                    <td><button onclick="clearDisplay()" id="button1">C</button></td>
+                    <td><button onclick="appendNumber('1')">1</button></td>
+                    <td><button onclick="appendNumber('2')">2</button></td>
+                    <td><button onclick="appendNumber('3')">3</button></td>
+                    
+                </tr>
+                <tr>
+                    <td><button onclick="appendNumber('4')">4</button></td>
+                    <td><button onclick="appendNumber('5')">5</button></td>
+                    <td><button onclick="appendNumber('6')">6</button></td>
+                    <td><button onclick="appendOperator('+')">+</button></td>
+                    
+                </tr>
+                <tr>
+                    <td><button onclick="appendNumber('7')">7</button></td>
+                    <td><button onclick="appendNumber('8')">8</button></td>
+                    <td><button onclick="appendNumber('9')">9</button></td>
+                    <td><button onclick="appendOperator('-')">-</button></td>
+                    
+                </tr>
+                <tr>
+                    <td colspan="2"><button onclick="appendNumber('0')" >0</button></td>
+                    <td><button >.</button></td>
+                    <td><button onclick="calculateResult()">=</button></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+
+</html>
