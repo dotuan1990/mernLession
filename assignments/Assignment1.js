@@ -26,3 +26,34 @@
 //Q9. How do we merge different objects properties using Object class function
 
 //Q10. Create an object literal and export it to another file and import and show that there
+
+
+console.log("Start")
+setTimeout(function(){
+    console.log("time 1")
+    setTimeout(function(){console.log("inner")})
+},1000)
+setTimeout(function(){
+    console.log("time2")
+},2000)
+setTimeout(function(){
+    console.log("time3")
+},1000)
+setTimeout(function(){
+    console.log("time4")
+},1000)
+console.log("end")
+let i = 0; // Initialize the counter
+
+// const intervalId = setInterval(() => {
+//     console.log(i); // Print the current value of i
+//     i++; // Increment i
+    
+//     // Clear the interval when i reaches 10000
+//     if (i >= 10) {
+//         clearInterval(intervalId);
+//     }
+// }, 1000); 
+// for(i = 0; i < 10000; i++){
+//     console.log(i)
+// }

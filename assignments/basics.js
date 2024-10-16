@@ -189,4 +189,5 @@ var mergeObject = Object.assign(obj1, obj2)
 console.log(mergeObject)
 // =============Q10.===================
 export default mergeObject;
-
+// from another file
+// import mergeObject from './basics.js';
