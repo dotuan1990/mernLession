@@ -8,8 +8,10 @@ bin-release/
 # Other files and folders
 .settings/
 MERN.code-workspace
-
-
+/react/react-webpack-setup/node_modules
+/react/first-app/node_modules
+/firstNodeExpress/node_modules
+/react/assignment12-4/node_modules
 # Executables
 *.swf
 *.air
